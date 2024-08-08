@@ -1,0 +1,7 @@
+Em Sistemas unix (linux), há uma restrita sensibilidade em maiusculas e minusculas em nomes de diretorios
+isso faz com que o projeto precise seguir um padrao;
+
+Namespace definido no autoload do composer.json aponta para um diretorio seguindo a sensibilidade dito acima,
+ou seja, se você tem o namespace ViaCep\Src\Controller, certifique-se de que o diretório se chama Controller com "C" maiúsculo.
+Se você definiu no composer.json que o namespace ViaCep\Src\Controller deve corresponder ao diretório src/Controller, 
+mas na verdade você tem um diretório controller com "c" minúsculo, o autoloader não conseguirá encontrar as classes.
