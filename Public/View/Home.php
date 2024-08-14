@@ -1,11 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ViaCep</title>
-</head>
+<?php require '../Templates/Header.php';?>
 <body>
-    <?= $Teste ?>
+    <div>
+        <form action="/salvar/cep">
+            <input type="text" name="cep" style="align-content: center;">
+            <button class="btn btn-primary" style="align-content: center;">Buscar</button>
+            <table>
+                
+            </table>
+            <button type="button" class="btn btn-success">Salvar dados</button>
+        </form>
+    </div>
 </body>
-</html>
+<?php require '../Templates/Footer.php';?>
