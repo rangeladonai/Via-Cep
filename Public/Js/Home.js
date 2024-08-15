@@ -8,11 +8,13 @@ function requestViaCepApi()
         fillCepDataFields(data);
     })
     .catch((error) => {
+        clearCepDataFields();
         console.error(error);
+        alert("Zip Code data not found!");
     });
 }
 
-function setCookieCep()
+function submit()
 {
     let cep = document.getElementById("cep").value;
     document.getElementById('form').submit();
@@ -25,4 +27,12 @@ function fillCepDataFields(obj)
     document.getElementById("UF").value = obj.uf;
     document.getElementById("Bairro").value = obj.bairro;
     document.getElementById("Logradouro").value = obj.logradouro;
+}
+
+function clearCepDataFields()
+{
+    document.getElementById("Localidade").value = "";
+    document.getElementById("UF").value = "";
+    document.getElementById("Bairro").value = "";
+    document.getElementById("Logradouro").value = "";
 }

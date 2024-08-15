@@ -2,7 +2,8 @@
 <body>
     <div class="container">
         <form action="/save/cep/json" id="form" method="post">
-            <input type="text" name="zipCode" id="cep" style="align-content: center;" maxlength="9" value="<?=$zipCode?>">
+            <h2>Via-Cep</h2>
+            <input type="text" name="zipCode" id="cep" style="align-content: center;" maxlength="9">
             <br>
             <button class="btn btn-primary" onclick="event.preventDefault();requestViaCepApi();" style="align-content: center;">Buscar</button>
             <table>
@@ -15,8 +16,10 @@
                     </td>
                 </tbody>
             </table>
-            <button type="button" class="btn btn-success" onclick="event.preventDefault();setCookieCep();">Salvar dados</button>
-            <div class="alert alert-success" role="alert"><?=$msg?></div>
+            <button type="button" class="btn btn-success" onclick="event.preventDefault();submit();">Salvar dados</button>
+            <?php if (!empty($msg)): ?>
+            <div class="alert alert-success" id="alert-final" role="alert"><?=$msg?></div>
+            <?php endif; ?>
         </form>
     </div>
     <script src="./Js/Home.js"></script>
