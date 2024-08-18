@@ -16,13 +16,20 @@ function requestViaCepApi()
 
 function submit()
 {
-    let cep = document.getElementById("cep").value;
-    document.getElementById('form').submit();
+    let form = new FormData(document.forms[0]);
+    fetch('/save/cep/json',{
+        method: 'POST',
+        body: form
+    })
+    .then((response) => response.json())
+    .then(data => {
+        document.getElementById('alert-final').innerHTML = data.msg;
+        document.getElementById('alert-final').className = data.class;
+    });
 }
 
 function fillCepDataFields(obj)
 {
-    console.log(obj)
     document.getElementById("Localidade").value = obj.localidade;
     document.getElementById("UF").value = obj.uf;
     document.getElementById("Bairro").value = obj.bairro;

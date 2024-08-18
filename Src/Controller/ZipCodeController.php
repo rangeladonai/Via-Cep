@@ -17,9 +17,16 @@ class ZipCodeController
         $zipCode = new ZipCode($_POST['zipCode']);
         $this->validZipCode($zipCode);
         $json = $this->zipCodeDataJson($_POST);
-        $saveMessage = $this->saveJson("../Json/", $zipCode->getZipCode(), $json);
+        try{
+            $this->saveJson("../Json/", $zipCode->getZipCode(), $json);
+            $saveMessage = "Sucesso! Dados do cep salvos na pasta Json do projeto!";
+            $class = "alert alert-success";
+        }catch (Exception $e){
+            $saveMessage = "ERRO! ocorreu um erro ao salvar os dados do cep no arquivo json!";
+            $class = "alert alert-error";
+        }
 
-        Web::View(['zipCode' => $zipCode->getZipCode(), 'msg' => $saveMessage], 'Home');
+        echo json_encode(['zipCode' => $zipCode->getZipCode(), 'msg' => $saveMessage, 'class' => $class]);
     }
 
     public function validZipCode(ZipCode $zipCode)
@@ -47,9 +54,8 @@ class ZipCodeController
         try{
             $file = $path . $fileName . ".json";
             file_put_contents($file, $json);
-            return "Zip Code Saved! Json/" . $fileName . ".json";
         }catch (Exception $e){
-            return $e->getMessage();
+            throw new Exception($e->getMessage());
         }
     }
 }
